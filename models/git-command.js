@@ -42,7 +42,14 @@ class GitCommand {
                     delete modified_files[x];
                 }
                 return "Successfully added as index file/s.";
-            }else{
+        } else if(path_file ==='*') {
+            for(const x in modified_files) {
+                if(modified_files[x].content !='') {
+                    this.staging.push(x);
+                    delete modified_files[x];
+                }
+            }
+        }else{
             return `Failed to add ${path_file}! File is not modified or missing.`;
         }
         return "Successfully added as index file/s.";
