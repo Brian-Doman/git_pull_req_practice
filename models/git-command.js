@@ -36,7 +36,13 @@ class GitCommand {
         /*
             Create logic here then run unit testing. Make sure that they all pass before sending PR.
         */
-        else{
+        else if (path_file === '.'){
+                for(const x in modified_files) {
+                    this.staging.push(x);
+                    delete modified_files[x];
+                }
+                return "Successfully added as index file/s.";
+            }else{
             return `Failed to add ${path_file}! File is not modified or missing.`;
         }
         return "Successfully added as index file/s.";
